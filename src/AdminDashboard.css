@@ -1,0 +1,136 @@
+.admin-view-users-container {
+    min-height: 70vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-view-users-main {
+    width: 60%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 100px;
+    margin-left: 20%;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-details {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: white;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.admin-details h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.admin-view-users-section {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.admin-view-users-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.admin-view-users-section th,
+.admin-view-users-section td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.admin-view-users-section th {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.admin-view-users-section td {
+    color: #333;
+    background-color: #ffffff;
+}
+
+.admin-view-users-section tr:hover {
+    background-color: #f1f1f1;
+}
+
+.delete-user-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.delete-user-btn:hover {
+    background-color: #c82333;
+}
+
+.delete-user-btn:focus {
+    outline: none;
+}
+
+header h1 {
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+aside {
+    width: 250px;
+    background-color: #e4dcdc;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    padding-top: 20px;
+    padding-left: 20px;
+    z-index: 1000;
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+aside ul li {
+    margin-bottom: 20px;
+}
+
+aside ul li:last-child {
+    margin-bottom: 0;
+}
+
+aside a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: 500;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+aside a:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+aside a.active {
+    background-color: #0056b3;
+    color: white;
+}

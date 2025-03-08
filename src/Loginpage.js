@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { ref, get } from "firebase/database";
 import { auth, database } from "./firebase";
+import "./Loginpage.css";
 
 const adminEmail = 'admin123@gmail.com';
 const adminPassword = 'admin123';
@@ -36,11 +37,7 @@ function Login() {
                         navigate("/AdminDashboard", { state: { email: user.email } });
                     } else if (userData.role === "User") {
                         console.log("userData", userData);
-                        if (userData?.isActive) {
-                            navigate("/Userdashboard", { state: { email: user.email } });
-                        } else {
-                            navigate("/DeletedUser", { state: { email: user.email } });
-                        }
+                        navigate("/UserDashboard", { state: { email: user.email } });
                     }
 
                 } else {
