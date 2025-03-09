@@ -56,7 +56,6 @@ const Register = () => {
                 role: "User",
                 createdAt: Date.now(),
                 updatedAt: Date.now(),
-                isActive: true,
                 uid: user.uid,
                 courses: {},
             };

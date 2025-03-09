@@ -62,6 +62,12 @@ const AdminDashboard = () => {
                 </ul>
                 <ul>
                     <li>
+                        <Link to="/ProductList">Products</Link>
+                    </li>
+                </ul>
+
+                <ul>
+                    <li>
                         <Link to="/">Logout</Link>
                     </li>
                 </ul>
