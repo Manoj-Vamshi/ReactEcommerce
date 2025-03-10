@@ -1,0 +1,105 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+  .address-header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    background-color: #222;
+    margin: 0;
+    padding: 10px 0;
+  }
+  
+  .address-header nav ul li {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .address-header nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .address-header nav ul li a:hover {
+    background-color: #fff;
+    color: #222;
+  }
+  
+  .address-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #222;
+  }
+  
+  .product-info {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .product-info .product-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .address-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .address-form label {
+    font-size: 14px;
+    color: #555;
+    margin-right:350px;
+    font-weight: bold;
+  }
+  
+  .address-form input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+    width:70%;
+    margin-left:80px;
+  }
+  
+  .address-form input:focus {
+    border-color: #ff4500;
+    outline: none;
+  }
+  
+  .submit-button {
+    background-color: black;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #fff;
+    color: #222;
+  }
+  
