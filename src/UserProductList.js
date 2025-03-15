@@ -54,7 +54,7 @@ function UserProductList() {
                 <aside>
                     <ul>
                         <li>
-                            <Link to="/Userdashboard">Home</Link>
+                            <Link to="/UserDashboard">Home</Link>
                         </li>
                     </ul>
                     <ul>
@@ -76,8 +76,6 @@ function UserProductList() {
             </header>
 
             <h1>Welcome to the Store</h1>
-
-            {/* Filter Input */}
             <div className="filter-container">
                 <input
                     type="text"

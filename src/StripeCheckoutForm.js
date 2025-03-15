@@ -17,7 +17,7 @@ const StripeCheckoutForm = () => {
   const navigate = useNavigate();
 
   // Safely destructure product and address from location.state
-  const { product, address } = location.state || {}; // Fallback to empty object if state is null or undefined
+  const { product, address } = location.state || {};
 
   useEffect(() => {
     if (product && address) {

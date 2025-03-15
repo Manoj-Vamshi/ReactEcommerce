@@ -5,7 +5,7 @@ import Register from "./Register";
 import AdminDashboard from "./AdminDashboard";
 import UserDashboard from "./Userdashboard";
 import AdminProductList from "./AdminProductList";
-import AddressPage from "./adresspage";
+import AddressPage from "./AddressPage";
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import StripeCheckoutForm from "./StripeCheckoutForm";
@@ -30,7 +30,7 @@ function App() {
                 <Route path="/AdminProductList" element={<AdminProductList />} />
                 <Route path="/UserProductList" element={<UserProductList />} />
                 <Route path="/CartPage" element={<CartPage />} />
-                <Route path="/adresspage" element={<AddressPage />} />
+                <Route path="/AddressPage" element={<AddressPage />} />
                 <Route
                   path="/StripeCheckoutForm"
                   element={
@@ -44,7 +44,7 @@ function App() {
             </div>
           </header>
         </div>
-      </BrowserRouter> {/* Ensure BrowserRouter wraps your app */}
+      </BrowserRouter>
     </CartProvider>
   );
 }

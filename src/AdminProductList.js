@@ -32,9 +32,9 @@ function AdminProductList() {
         image: null,
     });
 
-    const [editingProductId, setEditingProductId] = useState(null); // Track which product is being edited
-    const [showAddForm, setShowAddForm] = useState(false); // Toggle form visibility
-    const [filterQuery, setFilterQuery] = useState(""); // Filter query state
+    const [editingProductId, setEditingProductId] = useState(null);
+    const [showAddForm, setShowAddForm] = useState(false);
+    const [filterQuery, setFilterQuery] = useState("");
 
     const handleChange = (e) => {
         setNewProduct({
@@ -86,7 +86,7 @@ function AdminProductList() {
         // Reset form after adding or updating
         setNewProduct({ name: "", price: "", image: null });
         setEditingProductId(null);
-        setShowAddForm(false); // Hide form after submitting
+        setShowAddForm(false);
     };
 
     const handleEditProduct = (product) => {
@@ -96,7 +96,7 @@ function AdminProductList() {
             price: product.price,
             image: product.image,
         });
-        setShowAddForm(true); // Show the form for editing
+        setShowAddForm(true);
     };
 
     const handleDeleteProduct = (productId) => {
@@ -105,17 +105,17 @@ function AdminProductList() {
     };
 
     const handleShowAddForm = () => {
-        setShowAddForm(true); // Show the form when "Add Product" button is clicked
+        setShowAddForm(true);
     };
 
     const handleCancelAddProduct = () => {
-        setNewProduct({ name: "", price: "", image: null }); // Reset form
-        setShowAddForm(false); // Hide the form
-        setEditingProductId(null); // Reset editing state
+        setNewProduct({ name: "", price: "", image: null });
+        setShowAddForm(false);
+        setEditingProductId(null);
     };
 
     const handleFilterChange = (e) => {
-        setFilterQuery(e.target.value); // Update filter query
+        setFilterQuery(e.target.value);
     };
 
     // Filter products based on the filter query
@@ -146,7 +146,7 @@ function AdminProductList() {
             </header>
             <h1>Welcome to the Store</h1>
 
-            {/* Filter Input */}
+
             <div className="filter-container">
                 <input
                     type="text"
@@ -191,16 +191,14 @@ function AdminProductList() {
                     <button onClick={handleAddOrUpdateProduct}>
                         {editingProductId ? "Update Product" : "Add Product"}
                     </button>
-                    {/* Cancel Button */}
                     <button onClick={handleCancelAddProduct} className="cancel-button">
                         Cancel
                     </button>
                 </div>
             )}
 
-            {/* "Add Product" button */}
             {!showAddForm && (
-                <button onClick={handleShowAddForm}>Add Product</button>
+                <button className="add-button" onClick={handleShowAddForm}>Add Product</button>
             )}
 
             <div className="products-grid">
