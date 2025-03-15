@@ -1,58 +1,191 @@
+/* Sidebar Styles */
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #222;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background-color: #333;
+  padding-top: 30px;
+  padding-left: 20px;
+}
+
+aside ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+aside ul li {
+  margin: 20px 0;
+}
+
+aside ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  display: block;
+  padding: 10px;
+}
+
+aside ul li a:hover {
+  background-color: #444;
+  border-radius: 5px;
+}
+
+/* Main Products Container */
+.products-container {
+  margin-left: 250px; /* Allow space for the sidebar */
+  padding: 20px;
+}
+
+/* Welcome Heading */
+h1 {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Product Grid Styles */
 .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    max-width: 1200px;
-    margin: auto;
-    margin-left: 20%;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  margin-left: 0; /* No margin left needed anymore */
+}
 
-  .product-card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    padding: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+/* Product Card Styling */
+.product-card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: space-between; /* Push the content to top and buttons to bottom */
+  height: 400px; /* Set a fixed height for all product cards */
+}
 
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
 
+/* Product Name */
+.product-card h3 {
+  font-size: 20px;
+  margin: 10px 0;
+  color: #222;
+}
 
-  .product-card h3 {
-    font-size: 18px;
-    margin: 10px 0;
-    color: #222;
-  }
+/* Product Image */
+.product-image {
+  width: 100%;
+  height: 250px; /* Set a fixed height for all product images */
+  object-fit: cover; /* Ensure images cover the space without distortion */
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
 
-  .product-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
+.product-card:hover .product-image {
+  transform: scale(1.05);
+}
 
-  .product-price {
-    font-size: 16px;
-    color: #777;
-    margin: 10px 0;
-  }
+/* Product Price */
+.product-price {
+  font-size: 18px;
+  color: #555;
+  margin: 10px 0;
+}
 
-  .order-button {
-    background-color: black;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
+/* Action Buttons (Edit & Delete) */
+.product-actions {
+  margin-top: auto; /* Push the actions to the bottom of the card */
+  display: flex;
+  justify-content: space-between; /* Align buttons side by side */
+  width: 100%; /* Ensure buttons take the full width */
+}
 
-  .order-button:hover {
-    background-color: #fff;
-    color: #222;
-  }
+.edit-button, .delete-button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
 
-  .order-button:active {
-    transform: scale(0.95);
-  }
+.edit-button:hover {
+  background-color: #4CAF50;
+}
+
+.delete-button:hover {
+  background-color: #f44336;
+}
+
+.edit-button:active, .delete-button:active {
+  transform: scale(0.95);
+}
+
+/* Admin Form Styles */
+.add-product-form {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-product-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.add-product-form input[type="file"] {
+  padding: 10px;
+}
+
+.add-product-form button {
+  width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 12px 0;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-product-form button:hover {
+  background-color: #555;
+}
+
+/* Image Preview Style */
+.image-preview {
+  margin-top: 10px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}

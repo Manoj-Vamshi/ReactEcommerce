@@ -57,18 +57,17 @@ const AdminDashboard = () => {
             <aside>
                 <ul>
                     <li>
-                        <Link to="/AdminDashboard">Home</Link>
+                        <Link to="/adminDashboard">Home</Link>
                     </li>
                 </ul>
                 <ul>
                     <li>
-                        <Link to="/ProductList">Products</Link>
+                        <Link to="/AdminProductList">Products</Link>
                     </li>
                 </ul>
-
                 <ul>
                     <li>
-                        <Link to="/">Logout</Link>
+                        <Link to="/">Signout</Link>
                     </li>
                 </ul>
             </aside>

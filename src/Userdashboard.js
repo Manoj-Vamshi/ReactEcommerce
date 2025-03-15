@@ -30,7 +30,12 @@ const UserDashboard = () => {
                 </ul>
                 <ul>
                     <li>
-                        <Link to="/ProductList">Products</Link>
+                        <Link to="/UserProductList">Products</Link>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <Link to="/CartPage">Cart</Link>
                     </li>
                 </ul>
                 <ul>

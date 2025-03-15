@@ -15,12 +15,21 @@ const StripeCheckoutForm = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const { product, address } = location.state;
+
+  // Safely destructure product and address from location.state
+  const { product, address } = location.state || {}; // Fallback to empty object if state is null or undefined
 
   useEffect(() => {
-    console.log('Product:', product);
-    console.log('Address:', address);
+    if (product && address) {
+      console.log('Product:', product);
+      console.log('Address:', address);
+    }
   }, [product, address]);
+
+  // Check if product and address exist, if not display error
+  if (!product || !address) {
+    return <div>Error: Missing product or address details. Please go back and try again.</div>;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,19 +43,19 @@ const StripeCheckoutForm = () => {
     setError('');
 
     try {
-
+      // Convert price to cents
       const amountInCents = parseFloat(product.price.replace('$', '').replace(',', '')) * 100;
 
       console.log('Amount being sent to backend (in cents):', amountInCents);
 
-
+      // Send request to backend to create payment intent
       const { data: { clientSecret } } = await axios.post('http://localhost:4000/create-payment-intent', {
         amount: amountInCents,
       });
 
       console.log('Received clientSecret:', clientSecret);
 
-
+      // Confirm the payment using the Stripe API
       const result = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: elements.getElement(CardElement),
@@ -54,21 +63,19 @@ const StripeCheckoutForm = () => {
       });
 
       if (result.error) {
-
         setError(`Payment failed: ${result.error.message}`);
         setMessage('');
       } else if (result.paymentIntent.status === 'succeeded') {
-
         setMessage('Payment successful!');
         setError('');
 
-
+        // Save order details to Firebase
         const db = getDatabase();
         const ordersRef = ref(db, 'orders');
         const newOrderRef = push(ordersRef);
 
         set(newOrderRef, {
-          userId: auth.currentUser?.uid,  
+          userId: auth.currentUser?.uid,
           productName: product.name,
           productPrice: product.price,
           productImage: product.image,
@@ -76,7 +83,6 @@ const StripeCheckoutForm = () => {
           date: new Date().toISOString(),
         }).then(() => {
           console.log('Order saved successfully!');
-
           // Redirect to orders page after successful order
           navigate("/orders");
         }).catch((error) => {
@@ -100,10 +106,15 @@ const StripeCheckoutForm = () => {
       <p><strong>Price:</strong> {product.price}</p>
       <p><strong>Shipping Address:</strong> {address}</p>
 
+      {/* Stripe card input */}
       <CardElement />
+
+      {/* Submit button */}
       <button type="submit" className="stripe-button" disabled={!stripe || loading}>
         {loading ? 'Processing...' : `Pay ${product.price}`}
       </button>
+
+      {/* Error and success message */}
       {message && <p style={{ color: 'green' }}>{message}</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </form>
