@@ -1,6 +1,131 @@
-.cart-page {
+
+
+.cart-page1 {
+    display: flex;
+    width: 100%;
+}
+
+aside {
+    width: 250px;
+    background-color: #f4f4f4;
     padding: 20px;
-    font-family: Arial, sans-serif;
+    border-right: 2px solid #ddd;
+    position: fixed;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+aside ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+aside ul li {
+    margin-bottom: 20px;
+}
+
+aside ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+aside ul li a:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+@media (max-width: 1024px) {
+    aside {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        box-shadow: none;
+    }
+
+    aside ul li {
+        margin-bottom: 10px;
+    }
+
+    aside ul li a {
+        font-size: 16px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    aside {
+        width: 100%;
+        position: relative;
+        height: auto;
+        border-right: none;
+    }
+
+    .cart-page2 {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .cart-item img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .cart-item-details h3 {
+        font-size: 16px;
+    }
+
+    .cart-total h3 {
+        font-size: 18px;
+    }
+
+    .checkout-button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-item-details input[type="number"] {
+        width: 60px;
+    }
+
+    .cart-items-list li p {
+        font-size: 14px;
+    }
+}
+
+.cart-page2 {
+    flex-grow: 1;
+    margin-left: 20%;
+    padding: 20px;
+    background-color: #fff;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
 }
 
 .cart-items-list {
@@ -14,6 +139,7 @@
     margin-bottom: 20px;
     padding: 10px;
     border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .cart-item img {
@@ -27,27 +153,46 @@
     flex-grow: 1;
 }
 
-.remove-button {
+.cart-item-details h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.cart-item-details p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.cart-item-details .remove-button {
     background-color: red;
     color: white;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
     margin-top: 10px;
+    border-radius: 5px;
 }
 
-.remove-button:hover {
+.cart-item-details .remove-button:hover {
     background-color: darkred;
 }
 
-.quantity-input {
+.cart-item-details input[type="number"] {
     width: 50px;
+    padding: 5px;
     margin-right: 10px;
+    font-size: 16px;
 }
 
 .cart-total {
     text-align: right;
     margin-top: 20px;
+}
+
+.cart-total h3 {
+    font-size: 22px;
+    color: #333;
 }
 
 .checkout-button {
@@ -56,105 +201,14 @@
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 .checkout-button:hover {
     background-color: darkgreen;
 }
 
-/* Global CSS */
-
-/* Basic reset to remove margins and padding */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    min-height: 100vh; /* Ensure full height for flexbox */
-    flex-direction: row; /* Layout side by side */
-}
-
-aside {
-    width: 250px; /* Set a fixed width for the sidebar */
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-right: 2px solid #ddd; /* Optional, for separation */
-    position: fixed; /* Keep the sidebar fixed on the left */
-    height: 100vh; /* Full height */
-}
-
-aside ul {
-    list-style-type: none;
-}
-
-aside ul li {
-    margin-bottom: 15px;
-}
-
-aside ul li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-aside ul li a:hover {
-    color: #007bff;
-}
-
-main {
-    flex-grow: 1; /* The rest of the space is occupied by the main content */
-    margin-left: 250px; /* Offset for the sidebar */
-    padding: 20px;
-}
-
-header {
-    background-color: #007bff;
-    color: white;
-    padding: 15px 20px;
-    text-align: center;
-}
-
-footer {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
-h1 {
-    margin-bottom: 20px;
-}
-
-a {
-    text-decoration: none;
-    color: #007bff;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* For responsiveness */
-@media (max-width: 768px) {
-    body {
-        flex-direction: column;
-    }
-
-    aside {
-        width: 100%;
-        position: relative;
-        height: auto;
-    }
-
-    main {
-        margin-left: 0;
-    }
+.cart-items-list li p {
+    font-size: 16px;
 }

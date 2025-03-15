@@ -25,7 +25,7 @@ const UserDashboard = () => {
             <aside>
                 <ul>
                     <li>
-                        <Link to="/userdashboard">Home</Link>
+                        <Link to="/UserDashboard">Home</Link>
                     </li>
                 </ul>
                 <ul>
