@@ -1,0 +1,11 @@
+.stripe-button {
+    width: 20%;
+    padding: 12px;
+    background-color:black;
+    color: white;
+    margin-left:40%;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
