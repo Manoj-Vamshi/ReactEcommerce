@@ -1,23 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { getAuth } from "firebase/auth";
+import { getDatabase, ref, get } from "firebase/database";
+import { auth } from "./firebase";
 import { Link } from "react-router-dom";
-
 
 const UserDashboard = () => {
     const [name, setName] = useState("");
-    const navigate = useNavigate();
 
     useEffect(() => {
-        const auth = getAuth();
-        const user = auth.currentUser;
+        const fetchUserData = async () => {
+            const user = auth.currentUser;
+            if (user) {
+                const db = getDatabase();
+                const userRef = ref(db, `users/${user.uid}`); // Fetch user by UID
 
-        if (!user) {
-            navigate("/");
-        } else {
-            setName(user.displayName || user.email || "User");
-        }
-    }, [navigate]);
+                try {
+                    const snapshot = await get(userRef);
+                    if (snapshot.exists()) {
+                        setName(snapshot.val().name); // Set the name from Firebase
+                    } else {
+                        console.log("No user data found");
+                    }
+                } catch (error) {
+                    console.error("Error fetching user data:", error);
+                }
+            }
+        };
+
+        fetchUserData();
+    }, []);
 
     return (
         <div className="user-dashboard">
@@ -39,6 +49,9 @@ const UserDashboard = () => {
                     </li>
                 </ul>
                 <ul>
+                    <li> <Link to="/orders">Orders</Link></li>
+                </ul>
+                <ul>
                     <li>
                         <Link to="/">Logout</Link>
                     </li>
@@ -50,6 +63,7 @@ const UserDashboard = () => {
                 </header>
                 <div className="user-details">
                     {name ? `Welcome, ${name}` : "Loading..."}
+
 
                 </div>
 

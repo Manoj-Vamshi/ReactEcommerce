@@ -1,34 +1,49 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState , useEffect} from "react";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
 
-    // Add item to cart
-    const addToCart = (product, quantity) => {
+    const addToCart = (product) => {
         setCart((prevCart) => {
             const existingItem = prevCart.find((item) => item.id === product.id);
+
+            let updatedCart;
             if (existingItem) {
-                return prevCart.map((item) =>
+                updatedCart = prevCart.map((item) =>
                     item.id === product.id
-                        ? { ...item, quantity: item.quantity + quantity }
+                        ? { ...item, quantity: item.quantity + product.quantity }
                         : item
                 );
             } else {
-                return [...prevCart, { ...product, quantity }];
+                updatedCart = [...prevCart, product];
             }
+
+            console.log("Updated cart:", updatedCart);
+            return updatedCart;
         });
     };
 
-    // Update item quantity in cart
-    const updateCart = (itemId, newQuantity) => {
-        setCart((prevCart) => {
-            return prevCart.map((item) =>
-                item.id === itemId ? { ...item, quantity: newQuantity } : item
-            );
-        });
+    const updateCart = (productId, newQuantity) => {
+        if (newQuantity < 1) return;
+
+        setCart((prevCart) =>
+            prevCart.map((item) =>
+                item.id === productId ? { ...item, quantity: newQuantity } : item
+            )
+        );
+
+        console.log(`Updated quantity for ${productId}:`, newQuantity);
     };
+    useEffect(() => {
+        const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+        setCart(savedCart);
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart]);
 
     // Remove item from cart
     const removeFromCart = (itemId) => {

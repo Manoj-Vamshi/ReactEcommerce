@@ -97,29 +97,56 @@ const StripeCheckoutForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Complete your Payment</h2>
+    <div className="checkout-form">
+      <aside>
+        <ul>
+          <li>
+            <Link to="/UserDashboard">Home</Link>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="/UserProductList">Products</Link>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="/CartPage">Cart</Link>
+          </li>
+        </ul>
+        <ul>
+          <li> <Link to="/orders">Orders</Link></li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="/">Logout</Link>
+          </li>
+        </ul>
+      </aside>
+      <form onSubmit={handleSubmit}>
+        <h2>Complete your Payment</h2>
 
-      {cart.map((item, index) => (
-        <div key={index} className="cart-item">
-          <p><strong>Product:</strong> {item.name} (x{item.quantity})</p>
-          <p><strong>Price:</strong> {item.price} each</p>
-        </div>
-      ))}
+        {cart.map((item, index) => (
+          <div key={index} className="cart-item">
+            <p><strong>Product:</strong> {item.name} (x{item.quantity})</p>
+            <p><strong>Price:</strong> {item.price} each</p>
+          </div>
+        ))}
 
-      <p><strong>Total Price:</strong> ${(totalAmountInCents / 100).toFixed(2)}</p>
-      <p><strong>Shipping Address:</strong> {address}</p>
+        <p><strong>Total Price:</strong> ${(totalAmountInCents / 100).toFixed(2)}</p>
+        <p><strong>Shipping Address:</strong> {address}</p>
 
-      <CardElement />
+        <CardElement />
 
-      <button type="submit" className="stripe-button" disabled={!stripe || loading}>
-        {loading ? 'Processing...' : `Pay $${(totalAmountInCents / 100).toFixed(2)}`}
-      </button>
+        <button type="submit" className="stripe-button" disabled={!stripe || loading}>
+          {loading ? 'Processing...' : `Pay $${(totalAmountInCents / 100).toFixed(2)}`}
+        </button>
 
 
-      {message && <p style={{ color: 'green' }}>{message}</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-    </form>
+        {message && <p style={{ color: 'green' }}>{message}</p>}
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+      </form>
+    </div>
   );
 };
 

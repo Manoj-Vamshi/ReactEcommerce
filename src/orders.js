@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getDatabase, ref, onValue } from "firebase/database";
 import { auth } from './firebase';
 import { Link } from 'react-router-dom';
+import "./orders.css";
 
 const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
@@ -10,7 +11,7 @@ const OrdersPage = () => {
     const db = getDatabase();
     const ordersRef = ref(db, 'orders');
 
-    console.log("Orders",ordersRef);
+    console.log("Orders", ordersRef);
 
     onValue(ordersRef, (snapshot) => {
       const data = snapshot.val();
@@ -22,13 +23,38 @@ const OrdersPage = () => {
           userOrders.push(data[id]);
         }
       }
-console.log("Orders",userOrders);
+      console.log("Orders", userOrders);
       setOrders(userOrders);
     });
   }, []);
 
   return (
     <div>
+      <aside>
+        <ul>
+          <li>
+            <Link to="/UserDashboard">Home</Link>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="/UserProductList">Products</Link>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="/CartPage">Cart</Link>
+          </li>
+        </ul>
+        <ul>
+          <li> <Link to="/orders">Orders</Link></li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="/">Logout</Link>
+          </li>
+        </ul>
+      </aside>
 
       <h1>Your Orders</h1>
       <div>

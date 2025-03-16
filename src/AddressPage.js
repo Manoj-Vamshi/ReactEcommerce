@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useRef } from "react";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import "./adresspage.css";
 
 function AddressPage() {
@@ -34,18 +34,46 @@ function AddressPage() {
 
   return (
     <div className="address-page">
+      <aside>
+        <ul>
+          <li>
+            <Link to="/UserDashboard">Home</Link>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="/UserProductList">Products</Link>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="/CartPage">Cart</Link>
+          </li>
+        </ul>
+        <ul>
+          <li> <Link to="/orders">Orders</Link></li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="/">Logout</Link>
+          </li>
+        </ul>
+      </aside>
       <div className="address-container">
         <h1>Enter Delivery Address</h1>
 
-        <div className="cart-products">
+        <div className="cart-products-container">
           {cart.map((product, index) => (
             <div key={index} className="product-info">
               <img src={product.image} alt={product.name} className="product-image" />
               <p><strong>Product:</strong> {product.name}</p>
-              <p><strong>Price:</strong> {product.price} x {product.quantity}</p>
+              <p><strong>Price:</strong> ${product.price} x {product.quantity} = ${product.price * product.quantity}</p>
             </div>
           ))}
-        </div>
+          </div>
+          <div className="total-price"><h2>Total: ${cart.reduce((total, item) => total + parseFloat(item.price.replace('$', '').replace(',', '')) * item.quantity, 0).toFixed(2)}</h2>
+          </div>
+
 
         <form className="address-form" onSubmit={handleSubmit}>
           <label htmlFor="address">Building:</label>

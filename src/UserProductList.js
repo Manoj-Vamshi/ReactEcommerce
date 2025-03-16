@@ -52,16 +52,16 @@ function UserProductList() {
     };
 
     const handleAddToCart = (product) => {
-        // Ensure that the quantity is set to the correct value
-        const productQuantity = quantity[product.id] || 1;
-        addToCart({ ...product, quantity: productQuantity });
-        setSuccessMessage("Product added to cart successfully!");
+        const productQuantity = quantity[product.id] ?? 1; 
 
-        // Reset the quantity to 1 after adding to cart
-        setQuantity((prev) => ({
-            ...prev,
-            [product.id]: 1,
-        }));
+        console.log("Adding to cart:", {
+            ...product,
+            quantity: productQuantity
+        });
+
+        addToCart({ ...product, quantity: productQuantity });
+
+        setSuccessMessage(`${product.name} added to cart successfully!`);
 
         setTimeout(() => {
             setSuccessMessage("");
@@ -69,13 +69,14 @@ function UserProductList() {
     };
 
     const handleQuantityChange = (e, productId) => {
-        const value = parseInt(e.target.value, 10);
-        if (value > 0) {
-            setQuantity((prevQuantity) => ({
-                ...prevQuantity,
-                [productId]: value,
-            }));
-        }
+        const value = parseInt(e.target.value, 10) || 1;
+
+        if (value < 1) return;
+
+        setQuantity((prevQuantity) => ({
+            ...prevQuantity,
+            [productId]: value,
+        }));
     };
 
     const handleFilterChange = (e) => {
@@ -99,16 +100,27 @@ function UserProductList() {
             <header className="user-products-header">
                 <aside>
                     <ul>
-                        <li><Link to="/UserDashboard">Home</Link></li>
+                        <li>
+                            <Link to="/UserDashboard">Home</Link>
+                        </li>
                     </ul>
                     <ul>
-                        <li><Link to="/UserProductList">Products</Link></li>
+                        <li>
+                            <Link to="/UserProductList">Products</Link>
+                        </li>
                     </ul>
                     <ul>
-                        <li><Link to="/CartPage">Cart</Link></li>
+                        <li>
+                            <Link to="/CartPage">Cart</Link>
+                        </li>
                     </ul>
                     <ul>
-                        <li><Link to="/">Signout</Link></li>
+                        <li> <Link to="/orders">Orders</Link></li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <Link to="/">Logout</Link>
+                        </li>
                     </ul>
                 </aside>
             </header>
@@ -136,7 +148,7 @@ function UserProductList() {
                                 <img
                                     src={product.image}
                                     alt={product.name}
-                                    className="product-image"
+                                    className="product-image1"
                                     onError={(e) => {
                                         console.error("Image failed to load");
                                         e.target.src = "https://via.placeholder.com/150?text=Image+Error";

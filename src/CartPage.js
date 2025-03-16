@@ -24,16 +24,27 @@ const CartPage = () => {
         <div className="cart-page1">
             <aside>
                 <ul>
-                    <li><Link to="/UserDashboard">Home</Link></li>
+                    <li>
+                        <Link to="/UserDashboard">Home</Link>
+                    </li>
                 </ul>
                 <ul>
-                    <li><Link to="/UserProductList">Products</Link></li>
+                    <li>
+                        <Link to="/UserProductList">Products</Link>
+                    </li>
                 </ul>
                 <ul>
-                    <li><Link to="/CartPage">Cart</Link></li>
+                    <li>
+                        <Link to="/CartPage">Cart</Link>
+                    </li>
                 </ul>
                 <ul>
-                    <li><Link to="/">Logout</Link></li>
+                    <li> <Link to="/orders">Orders</Link></li>
+                </ul>
+                <ul>
+                    <li>
+                        <Link to="/">Logout</Link>
+                    </li>
                 </ul>
             </aside>
 
@@ -56,8 +67,9 @@ const CartPage = () => {
                                                 type="number"
                                                 value={item.quantity}
                                                 min="1"
-                                                onChange={(e) => updateCart(item.id, parseInt(e.target.value))}
+                                                onChange={(e) => updateCart(item.id, parseInt(e.target.value) || 1)}
                                             />
+
                                         </div>
                                         <button
                                             className="remove-button"

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getDatabase, ref, get, remove, update } from "firebase/database";
+import { getDatabase, ref, get, remove } from "firebase/database";
 import { db } from "./firebase";
 import { Link } from "react-router-dom";
 import "./AdminDashboard.css";
