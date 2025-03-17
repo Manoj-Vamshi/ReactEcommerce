@@ -84,7 +84,7 @@ function Login() {
                         </span>
                     </p>
                     <p
-                        onClick={() => navigate("/forgotpassword")}
+                        onClick={() => navigate("/ForgotPassword")}
                         className="forgot-password"
                     >
                         Forgot Password?

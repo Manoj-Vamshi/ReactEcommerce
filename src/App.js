@@ -13,6 +13,7 @@ import OrdersPage from "./orders";
 import UserProductList from "./UserProductList";
 import { CartProvider } from "./CartContext";
 import CartPage from "./CartPage";
+import ForgotPassword from "./ForgotPassword";
 
 
 const stripePromise = loadStripe('pk_test_51R2uIF00RRscGBIKn590SUFCTQdbBfLZmh2Gr7MScCq9OfL57WwxWVXxr3o8eB9pC1K6j8KQgWJztw8adorNBxRZ00Xw4ldg15');
@@ -26,6 +27,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/Forgotpassword" element={<ForgotPassword />} />
                 <Route path="/AdminDashboard" element={<AdminDashboard />} />
                 <Route path="/UserDashboard" element={<UserDashboard />} />
                 <Route path="/AdminProductList" element={<AdminProductList />} />

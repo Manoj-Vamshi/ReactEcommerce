@@ -28,8 +28,16 @@ const StripeCheckoutForm = () => {
     return <div>Error: Missing cart or address details. Please go back and try again.</div>;
   }
 
+  // ✅ Fix: Correct total amount calculation
   const totalAmountInCents = cart.reduce((total, item) => {
-    return total + parseFloat(item.price.replace('$', '').replace(',', '')) * 100 * item.quantity;
+    const priceInDollars = parseFloat(item.price.replace(/[^\d.]/g, ''));
+
+    if (isNaN(priceInDollars)) {
+      console.error(`Invalid price for item: ${item.name}`, item.price);
+      return total; // Skip invalid prices
+    }
+
+    return total + Math.round(priceInDollars * 100) * item.quantity;
   }, 0);
 
   const handleSubmit = async (e) => {
@@ -123,29 +131,30 @@ const StripeCheckoutForm = () => {
           </li>
         </ul>
       </aside>
-      <form onSubmit={handleSubmit}>
-        <h2>Complete your Payment</h2>
+      <div className="checkout-form-container">
+        <form onSubmit={handleSubmit}>
+          <h1>Complete your Payment</h1>
 
-        {cart.map((item, index) => (
-          <div key={index} className="cart-item">
-            <p><strong>Product:</strong> {item.name} (x{item.quantity})</p>
-            <p><strong>Price:</strong> {item.price} each</p>
-          </div>
-        ))}
+          {cart.map((item, index) => (
+            <div key={index} className="cart-item">
+              <p><strong>Product:</strong> {item.name} (x{item.quantity})</p>
+              <p><strong>Price:</strong> {item.price} each</p>
+            </div>
+          ))}
 
-        <p><strong>Total Price:</strong> ${(totalAmountInCents / 100).toFixed(2)}</p>
-        <p><strong>Shipping Address:</strong> {address}</p>
+          <p><strong>Total Price:</strong> ${(totalAmountInCents / 100).toFixed(2)}</p>
+          <p><strong>Shipping Address:</strong> {address}</p>
 
-        <CardElement />
+          <CardElement />
 
-        <button type="submit" className="stripe-button" disabled={!stripe || loading}>
-          {loading ? 'Processing...' : `Pay $${(totalAmountInCents / 100).toFixed(2)}`}
-        </button>
+          <button type="submit" className="stripe-button" disabled={!stripe || loading}>
+            {loading ? 'Processing...' : `Pay $${(totalAmountInCents / 100).toFixed(2)}`}
+          </button>
 
-
-        {message && <p style={{ color: 'green' }}>{message}</p>}
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-      </form>
+          {message && <p style={{ color: 'green' }}>{message}</p>}
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+        </form>
+      </div>
     </div>
   );
 };

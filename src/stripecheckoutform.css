@@ -1,11 +1,140 @@
-.stripe-button {
-    width: 20%;
-    padding: 12px;
-    background-color:black;
+.checkout-form-container {
+    margin-left: 570px;
+    display: flex;
+    width: 80%;
+    padding: 20px;
+}
+.h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 30px;
+    color: #333;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 20px;
+
+}
+
+aside {
+    width: 250px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-right: 2px solid #ddd;
+    position: fixed;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+aside ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+aside ul li {
+    margin-bottom: 20px;
+}
+
+aside ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+aside ul li a:hover {
+    background-color: #007bff;
     color: white;
-    margin-left:40%;
+}
+
+.checkout-container {
+    flex-grow: 1;
+    margin-left: 270px;
+    padding: 20px;
+    background-color: #fff;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.cart-item p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.stripe-button {
+    padding: 10px 20px;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.stripe-button:hover {
+    background-color: darkgreen;
+}
+
+@media (max-width: 1024px) {
+    aside {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        box-shadow: none;
+    }
+
+    .checkout-container {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    aside {
+        width: 100%;
+        position: relative;
+        height: auto;
+        border-right: none;
+    }
+
+    .checkout-container {
+        margin-left: 250px;
+        padding: 10px;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .stripe-button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
 }

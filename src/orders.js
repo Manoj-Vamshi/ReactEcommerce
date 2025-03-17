@@ -11,66 +11,48 @@ const OrdersPage = () => {
     const db = getDatabase();
     const ordersRef = ref(db, 'orders');
 
-    console.log("Orders", ordersRef);
-
     onValue(ordersRef, (snapshot) => {
       const data = snapshot.val();
       const userOrders = [];
-
 
       for (let id in data) {
         if (data[id].userId === auth.currentUser?.uid) {
           userOrders.push(data[id]);
         }
       }
-      console.log("Orders", userOrders);
       setOrders(userOrders);
     });
   }, []);
 
   return (
-    <div>
+    <div className="orders-container">
       <aside>
         <ul>
-          <li>
-            <Link to="/UserDashboard">Home</Link>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <Link to="/UserProductList">Products</Link>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <Link to="/CartPage">Cart</Link>
-          </li>
-        </ul>
-        <ul>
-          <li> <Link to="/orders">Orders</Link></li>
-        </ul>
-        <ul>
-          <li>
-            <Link to="/">Logout</Link>
-          </li>
+          <li><Link to="/UserDashboard">Home</Link></li>
+          <li><Link to="/UserProductList">Products</Link></li>
+          <li><Link to="/CartPage">Cart</Link></li>
+          <li><Link to="/orders">Orders</Link></li>
+          <li><Link to="/">Logout</Link></li>
         </ul>
       </aside>
 
-      <h1>Your Orders</h1>
-      <div>
-        {orders.length === 0 ? (
-          <p>No orders found</p>
-        ) : (
-          orders.map((order, index) => (
-            <div key={index} className="order">
-              <h2>{order.productName}</h2>
-              <img src={order.productImage} alt={order.productName} />
-              <p>Price: {order.productPrice}</p>
-              <p>Shipping Address: {order.shippingAddress}</p>
-              <p>Date: {new Date(order.date).toLocaleString()}</p>
-            </div>
-          ))
-        )}
+      <div className="orders-content">
+        <h1>Your Orders</h1>
+        <div className="orders-grid">
+          {orders.length === 0 ? (
+            <p>No orders found</p>
+          ) : (
+            orders.map((order, index) => (
+              <div key={index} className="order">
+                <h2>{order.productName}</h2>
+                <img src={order.productImage} alt={order.productName} />
+                <p><strong>Price:</strong> {order.productPrice}</p>
+                <p><strong>Shipping Address:</strong> {order.shippingAddress}</p>
+                <p><strong>Date:</strong> {new Date(order.date).toLocaleString()}</p>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );
